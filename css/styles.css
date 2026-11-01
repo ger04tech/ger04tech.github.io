@@ -388,13 +388,19 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round
 
 .carousel__controls { display: flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; }
 .carousel__controls[hidden] { display: none; }
-.carousel__dots { flex: 1; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.carousel__dots { flex: 1; display: flex; flex-wrap: wrap; }
+/* El botón mide 24px de alto para que sea fácil de tocar; el punto visible es el ::before */
 .carousel__dot {
-  width: 8px; height: 8px; padding: 0; border: 0; border-radius: 4px;
-  background: var(--stone); cursor: pointer;
+  display: grid; place-items: center;
+  height: 24px; padding: 0 0.2rem; border: 0;
+  background: none; cursor: pointer;
+}
+.carousel__dot::before {
+  content: ""; width: 8px; height: 8px; border-radius: 4px;
+  background: var(--stone);
   transition: width 0.3s var(--ease), background 0.3s;
 }
-.carousel__dot.is-active { width: 24px; background: var(--red); }
+.carousel__dot.is-active::before { width: 24px; background: var(--red); }
 .carousel__btn {
   display: grid; place-items: center;
   width: 44px; height: 44px; border-radius: var(--radius-sm);
