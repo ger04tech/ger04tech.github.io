@@ -269,9 +269,9 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round
 .section--wash::before {
   content: ""; position: absolute; inset: 0;
   background: url("../assets/doodles.svg") 0 0 / 420px 420px repeat;
-  opacity: 0.13;
-  -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 50%, transparent 35%, #000 100%);
-  mask-image: radial-gradient(ellipse 60% 55% at 50% 50%, transparent 35%, #000 100%);
+  opacity: 0.3;
+  -webkit-mask-image: radial-gradient(ellipse 62% 58% at 50% 50%, transparent 45%, #000 100%);
+  mask-image: radial-gradient(ellipse 62% 58% at 50% 50%, transparent 45%, #000 100%);
   pointer-events: none;
 }
 .section--wash > .container { position: relative; }
