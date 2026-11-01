@@ -308,16 +308,38 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
 }
 @media (min-width: 700px) { .stack { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1000px) { .stack { grid-template-columns: 1.6fr 0.8fr 1.3fr 1fr 1fr; } }
-.stack__group h3 { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.75rem; }
+@media (min-width: 1000px) { .stack { grid-template-columns: 1.5fr max-content 1.3fr 1fr 1.1fr; } }
+/* Título de cada grupo con una rayita roja */
+.stack__group h3 {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.85rem; color: var(--ink); margin-bottom: 0.85rem;
+}
+.stack__group h3::before { content: ""; width: 14px; height: 3px; border-radius: 2px; background: var(--red); }
 
 .chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .chips li {
-  padding: 0.35rem 0.85rem; border-radius: var(--radius-sm);
-  border: 1px solid var(--line); font-size: 0.92rem; font-weight: 500;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.35rem 0.8rem; border-radius: var(--radius-sm);
+  border: 1px solid var(--line); background: var(--surface);
+  font-size: 0.92rem; font-weight: 500; white-space: nowrap;
+  transition: translate 0.2s var(--ease), box-shadow 0.2s, border-color 0.2s;
 }
-.chips li:hover { background: var(--dark); border-color: var(--dark); color: var(--bg); }
+/* Logo en gris; al pasar el cursor toma el color de su marca (js/tech-icons.js pone --brand) */
+.chip__icon { width: 17px; height: 17px; flex: none; fill: var(--muted); stroke: none; transition: fill 0.2s; }
+.chip__icon--stroke { fill: none; stroke: var(--muted); stroke-width: 2; transition: stroke 0.2s; }
+@media (hover: hover) {
+  .chips li:hover {
+    translate: 0 -2px; box-shadow: var(--shadow);
+    border-color: color-mix(in srgb, var(--brand, var(--line)) 45%, var(--line));
+  }
+  .chips li:hover .chip__icon { fill: var(--brand); }
+  .chips li:hover .chip__icon--stroke { fill: none; stroke: var(--brand); }
+}
+/* En celular no hay cursor: los logos se ven a color desde el inicio */
+@media (hover: none) {
+  .chip__icon { fill: var(--brand, var(--muted)); }
+  .chip__icon--stroke { fill: none; stroke: var(--brand, var(--muted)); }
+}
 
 /* Experiencia */
 .timeline { list-style: none; margin: 0; padding: 0 0 0 1.5rem; border-left: 2px solid var(--line); display: grid; gap: 2.5rem; }
@@ -575,5 +597,5 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round
 @media (prefers-reduced-motion: reduce) {
   html, .projects { scroll-behavior: auto; }
   .projects .project:hover { scale: none; translate: none; }
-  .project__inner, .project__hover, .nav, .nav__indicator, .contact-link, .contact-link__arrow, .to-top, .badge__card { transition: none; }
+  .project__inner, .project__hover, .nav, .nav__indicator, .chips li, .contact-link, .contact-link__arrow, .to-top, .badge__card { transition: none; }
 }
