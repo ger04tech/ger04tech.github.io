@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Germán Sansores · Portafolio</title>
+  <meta name="description" content="Portafolio de Germán Gael Sansores Negrón, desarrollador full stack en Mérida, Yucatán.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23d93025'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='700' font-size='30' fill='%23fafaf8' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Oculta el contenido animado hasta que GSAP lo muestre (evita un parpadeo al cargar) -->
+  <script>document.documentElement.classList.add("js-anim");</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Ir al contenido</a>
+
+  <!-- BARRA SUPERIOR -->
+  <header class="topbar">
+    <div class="container">
+    <div class="topbar__inner">
+      <a href="#" class="logo" aria-label="Inicio">Germán Sansores<span class="red">.</span></a>
+      <nav id="nav" class="nav">
+        <!-- Fondo blanco que se desliza bajo el link con el cursor -->
+        <span class="nav__indicator" aria-hidden="true"></span>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div class="topbar__end">
+        <a class="icon-btn" href="mailto:germandev.work@gmail.com" aria-label="Correo: germandev.work@gmail.com">
+          <svg viewBox="52 42 88 66" aria-hidden="true"><path fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6"/><path fill="#34a853" d="M120 108h14c3.32 0 6-2.69 6-6V59l-20 15"/><path fill="#fbbc04" d="M120 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2"/><path fill="#ea4335" d="M72 74V48l24 18 24-18v26L96 92"/><path fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2"/></svg>
+        </a>
+        <a class="icon-btn" href="https://github.com/ger04tech" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+        </a>
+        <button class="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-open" d="M3 6h18M3 12h18M3 18h18"/><path class="i-close" d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+    </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- HERO -->
+    <section class="hero">
+      <!-- Fondo de puntos que reacciona al cursor (js/dot-grid.js) -->
+      <canvas class="hero__dots" aria-hidden="true"></canvas>
+      <div class="container hero__grid">
+        <div class="hero__text" data-reveal data-reveal-trigger="mount" data-reveal-stagger="0.15">
+          <h1 class="hero__title">Germán Gael<br>Sansores Negrón</h1>
+          <p class="hero__role">Desarrollador Full Stack</p>
+          <p class="hero__lead">Desarrollo sitios web y apps móviles completos, del front-end al back-end, con React, React Native, Node.js, PHP, Supabase y MongoDB. Estudiante de Ingeniería en Sistemas en el Tecnológico de Mérida.</p>
+          <div class="actions">
+            <a class="btn btn--filled" href="#proyectos">Ver proyectos</a>
+            <a class="btn btn--outlined" href="https://github.com/ger04tech" target="_blank" rel="noopener">
+              <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- GAFETE: cuelga de un listón y se balancea (js/badge.js). Foto en assets/foto.jpg; si no existe, se muestran tus iniciales -->
+        <div class="hero__photo" data-reveal data-reveal-trigger="mount" data-reveal-delay="0.3">
+          <div class="badge">
+            <span class="badge__strap" aria-hidden="true"></span>
+            <span class="badge__clip" aria-hidden="true"></span>
+            <div class="badge__card">
+              <span class="badge__slot" aria-hidden="true"></span>
+              <div class="badge__photo">
+                <span class="badge__initials">GS</span>
+                <img src="assets/foto.jpg" alt="Foto de Germán Sansores" draggable="false" onerror="this.remove()">
+              </div>
+              <p class="badge__name">Germán Sansores</p>
+              <p class="badge__role">Desarrollador Full Stack</p>
+              <div class="badge__foot">
+                <span>Mérida, Yuc.</span>
+                <span class="badge__code" aria-hidden="true"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section id="sobre-mi" class="section section--wash">
+      <div class="container">
+        <h2 class="section__title" data-reveal>Sobre mí</h2>
+
+        <div class="about">
+          <div class="about__text" data-reveal>
+            <p>Tengo 21 años y estoy en séptimo semestre de Ingeniería en Sistemas en el <a class="link" href="https://maps.app.goo.gl/hbU4vgyG9CQ2Q835A" target="_blank" rel="noopener">Tecnológico de Mérida</a>. Me gusta aprender nuevas tecnologías, automatizar procesos y trabajar con inteligencia artificial.</p>
+            <p>Disfruto rediseñar páginas y apps móviles: encontrar lo que no funciona, pulir cada detalle y dejar una experiencia más clara. Soy una persona muy detallista y sociable, y me gusta trabajar en equipo.</p>
+          </div>
+
+          <ul class="facts" data-reveal data-reveal-stagger="0.15">
+            <li class="fact"><span class="fact__num">21</span><span class="fact__label">años</span></li>
+            <li class="fact"><span class="fact__num">7º</span><span class="fact__label">semestre de Ing. en Sistemas</span></li>
+            <li class="fact"><span class="fact__num">9+</span><span class="fact__label">sitios y apps en los que he trabajado</span></li>
+          </ul>
+        </div>
+
+        <div class="stack" data-reveal data-reveal-stagger="0.12">
+          <div class="stack__group">
+            <h3>Front-end</h3>
+            <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>React</li><li>Tailwind CSS</li></ul>
+          </div>
+          <div class="stack__group">
+            <h3>Móvil</h3>
+            <ul class="chips"><li>React Native</li></ul>
+          </div>
+          <div class="stack__group">
+            <h3>Back-end y datos</h3>
+            <ul class="chips"><li>Node.js</li><li>PHP</li><li>Supabase</li><li>MongoDB</li></ul>
+          </div>
+          <div class="stack__group">
+            <h3>IA</h3>
+            <ul class="chips"><li>Claude Code</li><li>Codex</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCIA -->
+    <section id="experiencia" class="section section--tint">
+      <div class="container">
+        <h2 class="section__title" data-reveal>Experiencia</h2>
+
+        <ol class="timeline">
+          <li class="timeline__item" data-reveal>
+            <span class="timeline__badge timeline__badge--now">Actualidad</span>
+            <h3><a class="link" href="https://www.ativar.com.mx/" target="_blank" rel="noopener">Ativar</a> · Desarrollo de software</h3>
+            <p>Desarrollo de sitios web completos (front-end y back-end), rediseños, corrección de errores y mantenimiento de apps móviles para clientes de la empresa.</p>
+          </li>
+          <li class="timeline__item" data-reveal>
+            <span class="timeline__badge">En curso</span>
+            <h3>Tecnológico de Mérida · Ingeniería en Sistemas</h3>
+            <p>Séptimo semestre. Ahí nació mi proyecto personal Codent-Exam.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- PROYECTOS (se generan desde data/projects.js) -->
+    <section id="proyectos" class="section">
+      <div class="container">
+        <h2 class="section__title" data-reveal>Proyectos</h2>
+
+        <div class="filters" role="group" aria-label="Filtrar proyectos" data-reveal>
+          <button class="filter is-active" data-filter="all" aria-pressed="true">Todos</button>
+          <button class="filter" data-filter="creado" aria-pressed="false">Creados</button>
+          <button class="filter" data-filter="rediseno" aria-pressed="false">Rediseños y mejoras</button>
+          <button class="filter" data-filter="movil" aria-pressed="false">Apps móviles</button>
+          <button class="filter" data-filter="personal" aria-pressed="false">Personal</button>
+        </div>
+
+        <div id="projects-grid" class="projects" data-reveal data-reveal-stagger="0.12"></div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="contact">
+      <div class="container" data-reveal>
+        <h2 class="contact__title">Contacto</h2>
+        <a class="contact-link" href="https://github.com/ger04tech" target="_blank" rel="noopener">
+          <svg class="contact-link__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+          <span class="contact-link__text">github.com/ger04tech</span>
+          <svg class="contact-link__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="contact-link" href="mailto:germandev.work@gmail.com">
+          <svg class="contact-link__icon gmail-icon" viewBox="52 42 88 66" aria-hidden="true"><path fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6"/><path fill="#34a853" d="M120 108h14c3.32 0 6-2.69 6-6V59l-20 15"/><path fill="#fbbc04" d="M120 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2"/><path fill="#ea4335" d="M72 74V48l24 18 24-18v26L96 92"/><path fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2"/></svg>
+          <span class="contact-link__text">germandev.work@gmail.com</span>
+          <svg class="contact-link__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <a href="#" class="to-top" aria-label="Volver al inicio">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </a>
+
+  <script src="data/projects.js"></script>
+  <script src="js/dot-grid.js"></script>
+  <script src="js/badge.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+  <script src="js/animated-content.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
