@@ -83,6 +83,7 @@ grid.innerHTML = (window.PROJECTS || []).map((p) => `
           </button>
         </div>
         <span class="project__role">${escape(p.role)}</span>
+        <p class="project__about">${escape(p.description)}</p>
         ${p.tasks && p.tasks.length ? `
         <h4 class="project__label">Qué hice</h4>
         <ul class="project__tasks">${p.tasks.map((t) => `<li>${escape(t)}</li>`).join("")}</ul>` : ""}
@@ -121,6 +122,59 @@ document.addEventListener("keydown", (e) => {
   if (card) flipCard(card, false);
 });
 
+// Carrusel de proyectos: flechas y puntos avanzan de página en página
+const controls = document.querySelector(".carousel__controls");
+const dots = controls.querySelector(".carousel__dots");
+const [prevBtn, nextBtn] = controls.querySelectorAll(".carousel__btn");
+
+function carouselPages() {
+  const cards = [...grid.querySelectorAll(".project:not([hidden])")];
+  if (!cards.length) return { cards, perView: 1, pages: 0 };
+  const step = cards[0].offsetWidth + parseFloat(getComputedStyle(grid).columnGap);
+  const perView = Math.max(1, Math.round(grid.clientWidth / step));
+  return { cards, perView, pages: Math.ceil(cards.length / perView) };
+}
+function pageLeft(page) {
+  const { cards, perView } = carouselPages();
+  const card = cards[Math.min(page * perView, cards.length - 1)];
+  return card ? card.offsetLeft - parseFloat(getComputedStyle(grid).scrollPaddingLeft) : 0;
+}
+function currentPage() {
+  const { pages } = carouselPages();
+  const max = grid.scrollWidth - grid.clientWidth;
+  if (grid.scrollLeft >= max - 2) return pages - 1;
+  let page = 0;
+  for (let i = 0; i < pages; i++) if (pageLeft(i) <= grid.scrollLeft + 2) page = i;
+  return page;
+}
+function updateControls() {
+  const max = grid.scrollWidth - grid.clientWidth;
+  controls.hidden = max <= 2;
+  prevBtn.disabled = grid.scrollLeft <= 2;
+  nextBtn.disabled = grid.scrollLeft >= max - 2;
+  const page = currentPage();
+  dots.querySelectorAll(".carousel__dot").forEach((dot, i) => {
+    dot.classList.toggle("is-active", i === page);
+    dot.setAttribute("aria-current", String(i === page));
+  });
+}
+function buildDots() {
+  const { pages } = carouselPages();
+  dots.innerHTML = Array.from({ length: pages }, (_, i) =>
+    `<button class="carousel__dot" type="button" aria-label="Página ${i + 1} de ${pages}"></button>`).join("");
+  updateControls();
+}
+const goToPage = (page) => grid.scrollTo({ left: pageLeft(page) });
+
+dots.addEventListener("click", (e) => {
+  const dot = e.target.closest(".carousel__dot");
+  if (dot) goToPage([...dots.children].indexOf(dot));
+});
+prevBtn.addEventListener("click", () => goToPage(Math.max(currentPage() - 1, 0)));
+nextBtn.addEventListener("click", () => goToPage(currentPage() + 1));
+grid.addEventListener("scroll", updateControls, { passive: true });
+new ResizeObserver(buildDots).observe(grid);
+
 // Filtros de proyectos
 const filters = document.querySelectorAll(".filter");
 filters.forEach((btn) => {
@@ -134,6 +188,8 @@ filters.forEach((btn) => {
     grid.querySelectorAll(".project").forEach((card) => {
       card.hidden = value !== "all" && card.dataset.category !== value;
     });
+    grid.scrollTo({ left: 0, behavior: "instant" });
+    buildDots();
   });
 });
 

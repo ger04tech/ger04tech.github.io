@@ -162,7 +162,19 @@
           <button class="filter" data-filter="personal" aria-pressed="false">Personal</button>
         </div>
 
-        <div id="projects-grid" class="projects" data-reveal data-reveal-stagger="0.12"></div>
+        <!-- Carrusel: se desliza con las flechas, los puntos o el dedo -->
+        <div class="carousel">
+          <div id="projects-grid" class="projects" data-reveal data-reveal-stagger="0.12"></div>
+          <div class="carousel__controls">
+            <div class="carousel__dots" role="group" aria-label="Elegir página de proyectos"></div>
+            <button class="carousel__btn" type="button" data-dir="-1" aria-label="Proyectos anteriores">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+            </button>
+            <button class="carousel__btn" type="button" data-dir="1" aria-label="Siguientes proyectos">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
       </div>
     </section>
 

@@ -334,11 +334,43 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round
 .filter:hover { background: var(--tint); }
 .filter.is-active { background: var(--red-soft); border-color: transparent; color: var(--red); }
 
-.projects { display: grid; gap: 1.25rem; }
-@media (min-width: 640px) { .projects { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1000px) { .projects { grid-template-columns: repeat(3, 1fr); } }
+/* Carrusel: una fila que se desliza de lado. 3 tarjetas en computadora, 2 en tablet y
+   en celular una y un pedacito de la siguiente. El relleno deja espacio para la sombra y el zoom */
+.projects {
+  --gap: 1.25rem;
+  position: relative;
+  display: flex; gap: var(--gap);
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  padding: 0.75rem 0.5rem 1.25rem; margin: -0.75rem -0.5rem -1.25rem;
+  scroll-padding-inline: 0.5rem;
+  scrollbar-width: none;
+}
+.projects::-webkit-scrollbar { display: none; }
+.projects .project { flex: 0 0 85%; scroll-snap-align: start; }
+@media (min-width: 640px) { .projects .project { flex-basis: calc((100% - var(--gap)) / 2); } }
+@media (min-width: 1000px) { .projects .project { flex-basis: calc((100% - 2 * var(--gap)) / 3); } }
 
-/* Tarjeta que se voltea: las dos caras ocupan la misma celda, así la tarjeta mide lo de la cara más alta */
+.carousel__controls { display: flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; }
+.carousel__controls[hidden] { display: none; }
+.carousel__dots { flex: 1; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.carousel__dot {
+  width: 8px; height: 8px; padding: 0; border: 0; border-radius: 4px;
+  background: var(--stone); cursor: pointer;
+  transition: width 0.3s var(--ease), background 0.3s;
+}
+.carousel__dot.is-active { width: 24px; background: var(--red); }
+.carousel__btn {
+  display: grid; place-items: center;
+  width: 44px; height: 44px; border-radius: var(--radius-sm);
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, opacity 0.2s;
+}
+.carousel__btn:hover:not(:disabled) { background: var(--red); border-color: var(--red); color: var(--bg); }
+.carousel__btn:disabled { opacity: 0.35; cursor: default; }
+.carousel__btn svg { width: 20px; height: 20px; stroke-width: 2.2; }
+
+/* Tarjeta que se voltea: la altura la marca el frente; el reverso lo cubre y, si no cabe, hace scroll */
 .project { perspective: 1400px; }
 .project[hidden] { display: none; }
 
@@ -351,6 +383,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round
   .project:hover .project__face { box-shadow: var(--shadow-lg); }
 }
 .project__inner {
+  position: relative;
   display: grid; height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.6s var(--ease);
@@ -381,7 +414,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round
 /* Captura del sitio debajo de la barra, como una ventana del navegador */
 .project__shot {
   position: relative; display: block; overflow: hidden;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   background: var(--tint); border-bottom: 1px solid var(--line);
 }
 .project__shot img {
@@ -402,12 +435,16 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round
   border-radius: 22%;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
 }
-.project__body { display: flex; flex-direction: column; flex: 1; padding: 1.4rem 1.4rem 1.6rem; }
+.project__body { display: flex; flex-direction: column; flex: 1; padding: 1.1rem 1.25rem 1.25rem; }
 .project__role { display: block; font-size: 0.8rem; font-weight: 500; color: var(--red); }
-.project__title { display: block; font-size: 1.3rem; font-weight: 500; line-height: 1.2; margin: 0.3rem 0 0.6rem; }
-.project__desc { display: block; color: var(--muted); font-size: 0.97rem; margin: 0; }
+.project__title { display: block; font-size: 1.2rem; font-weight: 500; line-height: 1.2; margin: 0.25rem 0 0.5rem; }
+/* En el frente la descripción se corta a 3 líneas; completa aparece al voltear */
+.project__desc {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3;
+  overflow: hidden; color: var(--muted); font-size: 0.93rem; margin: 0;
+}
 .project__hint {
-  margin-top: auto; padding-top: 1.25rem;
+  margin-top: auto; padding-top: 0.9rem;
   display: inline-flex; align-items: center; gap: 0.35rem;
   font-weight: 500; font-size: 0.95rem; color: var(--ink);
 }
@@ -435,13 +472,15 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round
 
 /* Reverso: información completa */
 .project__back {
+  position: absolute; inset: 0; overflow-y: auto;
   transform: rotateY(180deg);
-  padding: 1.4rem;
+  padding: 1.25rem;
   background: var(--dark); color: var(--bg);
 }
 .project__back-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
 .project__back .project__title { margin-top: 0; }
 .project__back .project__role { color: #f28b82; }
+.project__about { margin: 0.75rem 0 0; font-size: 0.9rem; line-height: 1.55; color: #c4c7c5; }
 .project__close {
   flex: none; display: grid; place-items: center;
   width: 32px; height: 32px; margin: -0.2rem -0.3rem 0 0;
@@ -521,7 +560,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round
 .js-anim [data-reveal] { visibility: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html, .projects { scroll-behavior: auto; }
   .projects .project:hover { scale: none; translate: none; }
   .project__inner, .project__hover, .nav, .nav__indicator, .contact-link, .contact-link__arrow, .to-top, .badge__card { transition: none; }
 }
