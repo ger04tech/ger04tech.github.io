@@ -262,6 +262,19 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round
   margin: clamp(0.5rem, 1.2vw, 0.9rem) clamp(0.5rem, 2vw, 1.5rem);
   border-radius: var(--radius-panel);
 }
+
+/* Dibujitos de programación muy tenues en "Sobre mí" (assets/doodles.svg).
+   Se ven en las orillas y se desvanecen detrás del contenido */
+.section--wash { position: relative; overflow: hidden; }
+.section--wash::before {
+  content: ""; position: absolute; inset: 0;
+  background: url("../assets/doodles.svg") 0 0 / 420px 420px repeat;
+  opacity: 0.13;
+  -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 50%, transparent 35%, #000 100%);
+  mask-image: radial-gradient(ellipse 60% 55% at 50% 50%, transparent 35%, #000 100%);
+  pointer-events: none;
+}
+.section--wash > .container { position: relative; }
 .section__title { font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.02em; margin-bottom: 2.5rem; }
 
 /* Barrita de segmentos de colores debajo de cada título */
