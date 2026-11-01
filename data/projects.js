@@ -40,13 +40,13 @@ window.PROJECTS = [
   },
   {
     title: "Mérida Living Real Estate",
-    role: "Rediseño y bugs",
+    role: "Rediseño, nuevas funciones y bugs",
     category: "rediseno",
     type: "web",
     url: "https://www.meridalivingrealestate.com/",
     image: "assets/proyectos/merida-living.jpg",
     description: "Inmobiliaria bilingüe que publica propiedades en venta en Mérida, el norte de la ciudad, la playa y alrededores, para compradores de habla hispana e inglesa.",
-    tasks: ["Rediseño del sitio", "Corrección de errores"],
+    tasks: ["Rediseño del sitio", "Desarrollo de nuevas funciones a partir de requerimientos", "Corrección de errores"],
     stack: []
   },
   {
@@ -73,13 +73,13 @@ window.PROJECTS = [
   },
   {
     title: "TMKonnect",
-    role: "Bugs y mantenimiento",
+    role: "Nuevas funciones y mantenimiento",
     category: "rediseno",
     type: "web",
     url: "https://tmkonnect.com/",
     image: "assets/proyectos/tmkonnect.jpg",
     description: "Plataforma que conecta a empresas, emprendedores y creadores con una red internacional de profesionales de propiedad intelectual: marcas, derechos de autor, patentes y diseños industriales.",
-    tasks: ["Corrección de errores", "Mantenimiento"],
+    tasks: ["Desarrollo de nuevas funciones a partir de requerimientos", "Corrección de errores", "Mantenimiento"],
     stack: []
   },
   {
