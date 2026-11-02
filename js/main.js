@@ -1,43 +1,62 @@
 // Botón para volver al inicio: aparece al bajar
 const toTop = document.querySelector(".to-top");
-const onScroll = () => toTop.classList.toggle("is-visible", window.scrollY > 500);
-window.addEventListener("scroll", onScroll, { passive: true });
-onScroll();
 toTop.addEventListener("click", (e) => {
   e.preventDefault();
   window.scrollTo({ top: 0 });
 });
 
-// Menú móvil (se despliega hacia abajo)
-const menuBtn = document.querySelector(".menu-btn");
+// Columna roja: marca la sección que está en pantalla y muestra cuánto has bajado
+const rail = document.querySelector(".rail");
 const nav = document.getElementById("nav");
+const indicator = nav.querySelector(".rail__indicator");
+const navLinks = [...nav.querySelectorAll("a")];
+const sections = navLinks.map((a) => document.querySelector(a.hash));
+let activeLink = null;
 
-function setMenu(open) {
-  menuBtn.setAttribute("aria-expanded", String(open));
-  menuBtn.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
-  nav.classList.toggle("is-open", open);
-}
-
-// Fondo de la cápsula: se desliza al link con el cursor (o con el foco del teclado)
-const indicator = nav.querySelector(".nav__indicator");
-function moveIndicator(link) {
+// Mueve el recuadro blanco al link activo (vertical en computadora, horizontal en celular)
+function placeIndicator(link, animate = true) {
   if (!link) return indicator.classList.remove("is-visible");
-  // Si estaba oculto, aparece directo en su lugar en vez de deslizarse desde la izquierda
-  if (!indicator.classList.contains("is-visible")) indicator.style.transition = "none";
+  // Si estaba oculto, aparece directo en su lugar en vez de deslizarse desde la orilla
+  if (!animate || !indicator.classList.contains("is-visible")) indicator.style.transition = "none";
   indicator.style.width = link.offsetWidth + "px";
-  indicator.style.transform = `translateX(${link.offsetLeft}px)`;
+  indicator.style.height = link.offsetHeight + "px";
+  indicator.style.transform = `translate(${link.offsetLeft}px, ${link.offsetTop}px)`;
   indicator.offsetWidth;
   indicator.style.transition = "";
   indicator.classList.add("is-visible");
 }
-nav.addEventListener("pointerover", (e) => { const a = e.target.closest("a"); if (a) moveIndicator(a); });
-nav.addEventListener("pointerleave", () => moveIndicator(null));
-nav.addEventListener("focusin", (e) => moveIndicator(e.target.closest("a")));
-nav.addEventListener("focusout", (e) => { if (!nav.contains(e.relatedTarget)) moveIndicator(null); });
 
-menuBtn.addEventListener("click", () => setMenu(menuBtn.getAttribute("aria-expanded") !== "true"));
-nav.addEventListener("click", (e) => { if (e.target.tagName === "A") setMenu(false); });
-document.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
+function setActive(link) {
+  if (link === activeLink) return;
+  activeLink = link;
+  navLinks.forEach((a) => a.setAttribute("aria-current", String(a === link)));
+  placeIndicator(link);
+}
+
+function onScroll() {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  rail.style.setProperty("--progress", max > 0 ? Math.min(window.scrollY / max, 1) : 0);
+  toTop.classList.toggle("is-visible", window.scrollY > 500);
+
+  // Activa la sección que cruza el 40% de la pantalla; al llegar al final, la última
+  const line = window.innerHeight * 0.4;
+  let current = null;
+  sections.forEach((s, i) => {
+    const r = s.getBoundingClientRect();
+    if (r.top <= line && r.bottom > line) current = navLinks[i];
+  });
+  if (window.scrollY >= max - 2 && max > 0) current = navLinks[navLinks.length - 1];
+  setActive(current);
+}
+
+let ticking = false;
+window.addEventListener("scroll", () => {
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(() => { onScroll(); ticking = false; });
+}, { passive: true });
+window.addEventListener("resize", () => { placeIndicator(activeLink, false); onScroll(); });
+onScroll();
 
 // Tarjetas de proyectos generadas desde data/projects.js
 const grid = document.getElementById("projects-grid");

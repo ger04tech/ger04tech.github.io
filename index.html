@@ -2,9 +2,10 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Germán Sansores · Portafolio</title>
   <meta name="description" content="Portafolio de Germán Gael Sansores Negrón, desarrollador full stack en Mérida, Yucatán.">
+  <meta name="theme-color" content="#d93025">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23d93025'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='700' font-size='30' fill='%23fafaf8' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,49 +14,62 @@
   <!-- Oculta el contenido animado hasta que GSAP lo muestre (evita un parpadeo al cargar) -->
   <script>document.documentElement.classList.add("js-anim");</script>
 </head>
-<body>
+<body id="inicio">
   <a class="skip-link" href="#contenido">Ir al contenido</a>
 
-  <!-- BARRA SUPERIOR -->
-  <header class="topbar">
-    <div class="container">
-    <div class="topbar__inner">
-      <a href="#" class="logo" aria-label="Inicio">Germán Sansores<span class="red">.</span></a>
-      <nav id="nav" class="nav">
-        <!-- Fondo blanco que se desliza bajo el link con el cursor -->
-        <span class="nav__indicator" aria-hidden="true"></span>
-        <a href="#sobre-mi">Sobre mí</a>
-        <a href="#experiencia">Experiencia</a>
-        <a href="#proyectos">Proyectos</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-      <div class="topbar__end">
-        <a class="icon-btn" href="mailto:germandev.work@gmail.com" aria-label="Correo: germandev.work@gmail.com">
-          <svg viewBox="52 42 88 66" aria-hidden="true"><path fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6"/><path fill="#34a853" d="M120 108h14c3.32 0 6-2.69 6-6V59l-20 15"/><path fill="#fbbc04" d="M120 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2"/><path fill="#ea4335" d="M72 74V48l24 18 24-18v26L96 92"/><path fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2"/></svg>
-        </a>
-        <a class="icon-btn" href="https://github.com/ger04tech" target="_blank" rel="noopener" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
-        </a>
-        <button class="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-open" d="M3 6h18M3 12h18M3 18h18"/><path class="i-close" d="M6 6l12 12M18 6L6 18"/></svg>
-        </button>
-      </div>
+  <!-- COLUMNA ROJA: fija a la izquierda en computadora, barra inferior en celular -->
+  <aside class="rail">
+    <a href="#inicio" class="rail__logo" aria-label="Inicio">GS</a>
+
+    <nav id="nav" class="rail__nav" aria-label="Secciones">
+      <!-- Recuadro blanco que se desliza a la sección en pantalla (lo mueve js/main.js) -->
+      <span class="rail__indicator" aria-hidden="true"></span>
+      <a href="#sobre-mi">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+        <span>Sobre mí</span>
+      </a>
+      <a href="#experiencia">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg>
+        <span>Experiencia</span>
+      </a>
+      <a href="#proyectos">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg>
+        <span>Proyectos</span>
+      </a>
+      <a href="#contacto">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4 18-7Z"/></svg>
+        <span>Contacto</span>
+      </a>
+    </nav>
+
+    <div class="rail__end">
+      <a class="rail__icon" href="mailto:germandev.work@gmail.com" aria-label="Correo: germandev.work@gmail.com">
+        <svg class="gmail-icon" viewBox="52 42 88 66" aria-hidden="true"><path fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6"/><path fill="#34a853" d="M120 108h14c3.32 0 6-2.69 6-6V59l-20 15"/><path fill="#fbbc04" d="M120 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2"/><path fill="#ea4335" d="M72 74V48l24 18 24-18v26L96 92"/><path fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2"/></svg>
+      </a>
+      <a class="rail__icon" href="https://github.com/ger04tech" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg class="fill-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+      </a>
     </div>
-    </div>
-  </header>
+
+    <!-- Avance de la página -->
+    <span class="rail__progress" aria-hidden="true"><span></span></span>
+  </aside>
 
   <main id="contenido">
-    <!-- HERO -->
+    <!-- INICIO -->
     <section class="hero">
       <!-- Fondo de puntos que reacciona al cursor (js/dot-grid.js) -->
       <canvas class="hero__dots" aria-hidden="true"></canvas>
       <div class="container hero__grid">
         <div class="hero__text" data-reveal data-reveal-trigger="mount" data-reveal-stagger="0.15">
-          <h1 class="hero__title">Germán Gael<br>Sansores Negrón</h1>
+          <h1 class="hero__title">Germán Gael<br>Sansores Negrón<span class="red" aria-hidden="true">.</span></h1>
           <p class="hero__role">Desarrollador Full Stack</p>
-          <p class="hero__lead">Desarrollo sitios web y apps móviles completos, del front-end al back-end, con React, React Native, Node.js, PHP, Supabase y MongoDB. Estudiante de Ingeniería en Sistemas en el Tecnológico de Mérida.</p>
+          <p class="hero__lead">Desarrollo <strong>sitios web y apps móviles</strong> completos, del front-end al back-end.</p>
           <div class="actions">
-            <a class="btn btn--filled" href="#proyectos">Ver proyectos</a>
+            <a class="btn btn--filled" href="#proyectos">
+              Ver proyectos
+              <svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
             <a class="btn btn--outlined" href="https://github.com/ger04tech" target="_blank" rel="noopener">
               <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
               GitHub
@@ -89,41 +103,44 @@
     <!-- SOBRE MÍ -->
     <section id="sobre-mi" class="section section--wash">
       <div class="container">
-        <h2 class="section__title" data-reveal>Sobre mí</h2>
+        <h2 class="section__title" data-reveal><span>Sobre mí<span class="red" aria-hidden="true">.</span></span></h2>
 
-        <div class="about">
-          <div class="about__text" data-reveal>
-            <p>Tengo 21 años y estoy en séptimo semestre de Ingeniería en Sistemas en el <a class="link" href="https://maps.app.goo.gl/hbU4vgyG9CQ2Q835A" target="_blank" rel="noopener">Tecnológico de Mérida</a>. Me gusta aprender nuevas tecnologías, automatizar procesos y trabajar con inteligencia artificial.</p>
-            <p>Disfruto rediseñar páginas y apps móviles: encontrar lo que no funciona, pulir cada detalle y dejar una experiencia más clara. Soy una persona muy detallista y sociable, y me gusta trabajar en equipo.</p>
+        <!-- Mosaico: texto grande a la izquierda y datos en cuadros a la derecha -->
+        <div class="bento" data-reveal data-reveal-stagger="0.1">
+          <div class="tile about__text">
+            <!-- Frase principal grande; las palabras clave van resaltadas para quien solo hojea -->
+            <p class="about__lead">Me gusta <mark>aprender nuevas tecnologías</mark>, <mark>automatizar procesos</mark> y trabajar con <mark>inteligencia artificial</mark>.</p>
+            <p>Disfruto rediseñar páginas y apps: encontrar lo que no funciona y pulir cada detalle. Soy detallista, sociable y me gusta trabajar en equipo.</p>
           </div>
-
-          <ul class="facts" data-reveal data-reveal-stagger="0.15">
-            <li class="fact"><span class="fact__num">21</span><span class="fact__label">años</span></li>
-            <li class="fact"><span class="fact__num">7º</span><span class="fact__label">semestre de Ing. en Sistemas</span></li>
-            <li class="fact"><span class="fact__num">9+</span><span class="fact__label">sitios y apps en los que he trabajado</span></li>
-          </ul>
+          <div class="tile fact fact--red"><span class="fact__num">21</span><span class="fact__label">años</span></div>
+          <div class="tile fact"><span class="fact__num">7º</span><span class="fact__label">semestre de Ing. en Sistemas</span></div>
+          <div class="tile fact fact--dark"><span class="fact__num">9+</span><span class="fact__label">sitios y apps en los que he trabajado</span></div>
+          <div class="tile fact fact--place">
+            <svg class="fact__pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <span class="fact__label"><strong>Mérida, Yucatán</strong>México</span>
+          </div>
         </div>
 
-        <div class="stack" data-reveal data-reveal-stagger="0.12">
-          <div class="stack__group">
+        <div class="stack" data-reveal data-reveal-stagger="0.1">
+          <div class="tile stack__group stack__group--wide">
             <h3>Front-end</h3>
             <ul class="chips"><li data-icon="html">HTML</li><li data-icon="css">CSS</li><li data-icon="javascript">JavaScript</li><li data-icon="react">React</li><li data-icon="tailwind">Tailwind CSS</li></ul>
           </div>
-          <div class="stack__group">
+          <div class="tile stack__group">
             <h3>Móvil</h3>
             <ul class="chips"><li data-icon="react">React Native</li></ul>
           </div>
-          <div class="stack__group">
+          <div class="tile stack__group">
+            <h3>IA</h3>
+            <ul class="chips"><li data-icon="claude">Claude Code</li><li data-icon="codex">Codex</li></ul>
+          </div>
+          <div class="tile stack__group stack__group--wide">
             <h3>Back-end y datos</h3>
             <ul class="chips"><li data-icon="node">Node.js</li><li data-icon="php">PHP</li><li data-icon="supabase">Supabase</li><li data-icon="mongodb">MongoDB</li></ul>
           </div>
-          <div class="stack__group">
+          <div class="tile stack__group stack__group--wide">
             <h3>Despliegue</h3>
             <ul class="chips"><li data-icon="aws">AWS</li><li data-icon="heroku">Heroku</li><li data-icon="vercel">Vercel</li></ul>
-          </div>
-          <div class="stack__group">
-            <h3>IA</h3>
-            <ul class="chips"><li data-icon="claude">Claude Code</li><li data-icon="codex">Codex</li></ul>
           </div>
         </div>
       </div>
@@ -132,18 +149,25 @@
     <!-- EXPERIENCIA -->
     <section id="experiencia" class="section section--tint">
       <div class="container">
-        <h2 class="section__title" data-reveal>Experiencia</h2>
+        <h2 class="section__title" data-reveal><span>Experiencia<span class="red" aria-hidden="true">.</span></span></h2>
 
         <ol class="timeline">
           <li class="timeline__item" data-reveal>
             <span class="timeline__badge timeline__badge--now">Actualidad</span>
-            <h3><a class="link" href="https://www.ativar.com.mx/" target="_blank" rel="noopener">Ativar</a> · Desarrollo de software</h3>
-            <p>Desarrollo de sitios web completos (front-end y back-end), nuevas funciones a partir de requerimientos, rediseños, corrección de errores y mantenimiento de apps móviles para clientes de la empresa. Despliegue a producción en AWS y Heroku.</p>
+            <div class="timeline__body">
+              <h3><a class="link" href="https://www.ativar.com.mx/" target="_blank" rel="noopener">Ativar</a> · Desarrollo de software</h3>
+              <p>Sitios web y apps móviles para clientes de la empresa.</p>
+              <ul class="tags">
+                <li>Front-end y back-end</li><li>Nuevas funciones</li><li>Rediseños</li><li>Corrección de errores</li><li>Despliegue en AWS y Heroku</li>
+              </ul>
+            </div>
           </li>
           <li class="timeline__item" data-reveal>
             <span class="timeline__badge">En curso</span>
-            <h3>Tecnológico de Mérida · Ingeniería en Sistemas</h3>
-            <p>Séptimo semestre. Ahí nació mi proyecto personal Codent-Exam.</p>
+            <div class="timeline__body">
+              <h3><a class="link" href="https://maps.app.goo.gl/hbU4vgyG9CQ2Q835A" target="_blank" rel="noopener">Tecnológico de Mérida</a> · Ingeniería en Sistemas</h3>
+              <p>Séptimo semestre. Ahí nació mi proyecto personal Codent-Exam.</p>
+            </div>
           </li>
         </ol>
       </div>
@@ -152,7 +176,7 @@
     <!-- PROYECTOS (se generan desde data/projects.js) -->
     <section id="proyectos" class="section">
       <div class="container">
-        <h2 class="section__title" data-reveal>Proyectos</h2>
+        <h2 class="section__title" data-reveal><span>Proyectos<span class="red" aria-hidden="true">.</span></span></h2>
 
         <div class="filters" role="group" aria-label="Filtrar proyectos" data-reveal>
           <button class="filter is-active" data-filter="all" aria-pressed="true">Todos</button>
@@ -179,24 +203,32 @@
     </section>
 
     <!-- CONTACTO -->
-    <section id="contacto" class="contact">
-      <div class="container" data-reveal>
-        <h2 class="contact__title">Contacto</h2>
-        <a class="contact-link" href="https://github.com/ger04tech" target="_blank" rel="noopener">
-          <svg class="contact-link__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
-          <span class="contact-link__text">github.com/ger04tech</span>
-          <svg class="contact-link__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-        </a>
-        <a class="contact-link" href="mailto:germandev.work@gmail.com">
-          <svg class="contact-link__icon gmail-icon" viewBox="52 42 88 66" aria-hidden="true"><path fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6"/><path fill="#34a853" d="M120 108h14c3.32 0 6-2.69 6-6V59l-20 15"/><path fill="#fbbc04" d="M120 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2"/><path fill="#ea4335" d="M72 74V48l24 18 24-18v26L96 92"/><path fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2"/></svg>
-          <span class="contact-link__text">germandev.work@gmail.com</span>
-          <svg class="contact-link__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-        </a>
+    <section id="contacto" class="section contact">
+      <div class="container">
+        <h2 class="section__title" data-reveal><span>Contacto<span class="red" aria-hidden="true">.</span></span></h2>
+        <div class="contact__grid" data-reveal data-reveal-stagger="0.12">
+          <a class="contact-card" href="mailto:germandev.work@gmail.com">
+            <span class="contact-card__top">
+              <svg class="contact-card__icon gmail-icon" viewBox="52 42 88 66" aria-hidden="true"><path fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6"/><path fill="#34a853" d="M120 108h14c3.32 0 6-2.69 6-6V59l-20 15"/><path fill="#fbbc04" d="M120 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2"/><path fill="#ea4335" d="M72 74V48l24 18 24-18v26L96 92"/><path fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2"/></svg>
+              <svg class="contact-card__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </span>
+            <span class="contact-card__label">Correo</span>
+            <span class="contact-card__text">germandev.work@gmail.com</span>
+          </a>
+          <a class="contact-card" href="https://github.com/ger04tech" target="_blank" rel="noopener">
+            <span class="contact-card__top">
+              <svg class="contact-card__icon fill-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+              <svg class="contact-card__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </span>
+            <span class="contact-card__label">GitHub</span>
+            <span class="contact-card__text">github.com/ger04tech</span>
+          </a>
+        </div>
       </div>
     </section>
   </main>
 
-  <a href="#" class="to-top" aria-label="Volver al inicio">
+  <a href="#inicio" class="to-top" aria-label="Volver al inicio">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
   </a>
 
