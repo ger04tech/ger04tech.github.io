@@ -76,21 +76,21 @@ grid.innerHTML = (window.PROJECTS || []).map((p) => `
     <div class="project__inner">
       <button class="project__face project__front" type="button" aria-expanded="false" aria-label="Ver más sobre ${escape(p.title)}">
         <span class="project__bar">
-          <svg class="project__icon" viewBox="0 0 24 24" aria-hidden="true">${ICONS[p.type] || ICONS.web}</svg>
-          <span class="project__domain">${escape(domainOf(p.url))}</span>
+          <span class="project__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="project__url">
+            <svg class="project__icon" viewBox="0 0 24 24" aria-hidden="true">${ICONS[p.type] || ICONS.web}</svg>
+            <span class="project__domain">${escape(domainOf(p.url))}</span>
+          </span>
         </span>
-        ${p.image ? (p.banner
-          ? `<span class="project__shot project__shot--banner" style="--banner: ${escape(p.banner)}; --icon: url('${escape(new URL(p.image, location.href).href)}')"><img src="${escape(p.image)}" alt="" loading="lazy"></span>`
-          : `<span class="project__shot"><img src="${escape(p.image)}" alt="" loading="lazy"></span>`) : ""}
+        <span class="project__shot${p.banner ? " project__shot--banner" : ""}"${p.banner ? ` style="--banner: ${escape(p.banner)}; --icon: url('${escape(new URL(p.image, location.href).href)}')"` : ""}>
+          ${p.image ? `<img src="${escape(p.image)}" alt="" loading="lazy">` : ""}
+          <span class="project__peek" aria-hidden="true">Ver detalles <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+        </span>
         <span class="project__body">
-          <span class="project__role">${escape(p.role)}</span>
           <span class="project__title">${escape(p.title)}</span>
+          <span class="project__role">${escape(p.role)}</span>
           <span class="project__desc">${escape(p.description)}</span>
           <span class="project__hint">Ver más <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>
-        </span>
-        <span class="project__hover" aria-hidden="true">
-          <span class="project__hover-title">${escape(p.title)}</span>
-          <span class="project__more">Ver más <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
         </span>
       </button>
 
@@ -171,6 +171,7 @@ function updateControls() {
   controls.hidden = max <= 2;
   prevBtn.disabled = grid.scrollLeft <= 2;
   nextBtn.disabled = grid.scrollLeft >= max - 2;
+  grid.classList.toggle("is-end", nextBtn.disabled);
   const page = currentPage();
   dots.querySelectorAll(".carousel__dot").forEach((dot, i) => {
     dot.classList.toggle("is-active", i === page);
@@ -194,8 +195,13 @@ nextBtn.addEventListener("click", () => goToPage(currentPage() + 1));
 grid.addEventListener("scroll", updateControls, { passive: true });
 new ResizeObserver(buildDots).observe(grid);
 
-// Filtros de proyectos
+// Filtros de proyectos (cada uno muestra cuántos proyectos tiene)
 const filters = document.querySelectorAll(".filter");
+filters.forEach((btn) => {
+  const value = btn.dataset.filter;
+  const count = (window.PROJECTS || []).filter((p) => value === "all" || p.category === value).length;
+  btn.insertAdjacentHTML("beforeend", ` <span class="filter__count">${count}</span>`);
+});
 filters.forEach((btn) => {
   btn.addEventListener("click", () => {
     const value = btn.dataset.filter;
